@@ -1,4 +1,4 @@
-nedi
+NeDi
 ====
 
 NeDi Definition Files for several devices
