@@ -7,6 +7,8 @@ The IT Department at the government of Biel/Bienne uses NeDi to inventory and mo
 
 For more Information about NeDi: [www.nedi.ch](http://www.nedi.ch).
 
+Note: All files are also included in NeDI.
+
 File legend:
 ------------
 
