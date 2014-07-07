@@ -1,0 +1,2 @@
+Defaults:nedi    !requiretty
+nedi    ALL=NOPASSWD:   /usr/bin/nmap

@@ -1,6 +1,4 @@
 class nedi {
-  include httpd::nwlnx01
-  include sudo::nedi
   Package { ensure => 'installed' }
   package { 'php': }
   package { 'php-mysql': }
