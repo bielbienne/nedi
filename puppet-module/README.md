@@ -12,15 +12,14 @@ connected devices, monitor traffic or broadcasts, send mails or SMS when certain
 
 Setup
 -----
-Because this recepie is still in a alpha, you need to extract and initialize NeDi by yourself. Just extract the tarball in the files directory to */usr/local/nedi*. It is strongly recommended that you read the documentation of NeDI **BEFORE** you run NeDI for the first time.
-The application part, of NeDi will be found in */usr/local/nedi*. The home directory and  all varying files of NeDi are located in */var/nedi*. The puppet recipie creates all the necessary symlinks.
-This manifest also copies a crontab example into */var/nedi/crontab*. There are just a few examples how you could run NeDi regularly. There are also some examples in the folder "files", which you can just copy to your server or modify to your needs.
+To install this recipie, copy the whole puppet-module folder into your modules folder in you Puppet environment. It will setup the folder structure for nedi, create a user for NeDi, create a virtual host and manages the crontab for the user nedi.
+It is highly recommended that you read the documentation of NeDi **BEFORE** you use this recipie. Since it is still in an early development statium, there can occur several erros. If you expirience something unexpected, please let us know, so we can fix it.
+You need initialize NeDi by yourself, since there are a few parameters, which aren't implemented into this recipie yet. The application part, of NeDi will be found in */usr/local/nedi*. The home directory and  all varying files of NeDi are located in */var/nedi*. The puppet recipie creates all the necessary symlinks.
 
 Roadmap
 -------
-* Installing NeDI within the recpie
-* Managin nedi.conf by templates
-* Manage crontab
+* Initializing NeDi within the recipie
+
 
 Contributors
 ------------
