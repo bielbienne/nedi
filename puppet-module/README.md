@@ -1,4 +1,4 @@
-xnedi
+NeDi Module
 ====
 
 Overview
