@@ -18,21 +18,14 @@ class nedi::install {
       owner   => 'nedi',
       group   => 'apache',
       require => File['userhome'];
-    'var.tar.gz':
+    'var.tar':
       ensure  => 'file',
-      path    => '/tmp/var.tar.gz',
+      path    => '/tmp/var.tar',
+      source  => 'puppet:///modules/nedi/application/var.tar',
       mode    => '0700',
       owner   => 'root',
       group   => 'root',
       require => File['userhome'];
-    'nedi.conf':
-      ensure  => 'file',
-      path    => '/usr/share/etc/nedi.conf',
-      source  => 'puppet:///modules/nedi/nedi.conf',
-      owner   => 'nedi',
-      group   => 'apache',
-      mode    => '0700',
-      require => File['application-folder'];
     '/usr/local/nedi/conf':
       ensure  => 'link',
       target  => '/var/nedi/conf',
@@ -60,6 +53,20 @@ class nedi::install {
       owner   => 'nedi',
       group   => 'apache',
       require => File['nedi.conf'];
+    'nedi.conf':
+      ensure  => 'file',
+      path    => '/usr/local/etc/nedi.conf',
+      content => template('nedi/nedi.conf.erb'),
+      owner   => 'nedi',
+      group   => 'apache',
+      mode    => '0700';
+    'nedi-httpd.conf':
+      ensure  => 'file',
+      path    => '/etc/httpd/conf.d/nedi.conf',
+      content => template('nedi/httpd.conf.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644';
   }
   user {'nedi':
     ensure     => 'present',
@@ -70,8 +77,8 @@ class nedi::install {
     groups     => ['apache'],
   }
   exec {'var-content':
-    command    => 'tar -xzf /tmp/var.tar.gz -O /var/nedi/',
+    command    => 'tar -xf /tmp/var.tar -C /var/nedi/',
     unless     => 'cat /var/nedi/.lockfile 2> /dev/null',
-    require    => File['var.tar.gz'],
+    require    => File['var.tar'],
   }
 }
