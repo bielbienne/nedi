@@ -1,30 +1,23 @@
-class nedi::config {
-  # require puppetlabs/apache
-  # vhost
+class nedi::config{
   # crontab
-  class { 'apache':
-    default_mods        => false,
-    default_confd_files => false,
-    apache::mod { 'rewrite': }
-    class { 'apache::mod::ssl':
-      ssl_compression => false,
-      ssl_options     => [ 'StdEnvVars' ],
-    }
-    apache::vhost {'nedi.example.com':
-      port              => '80',
-      rewrites          => [
-        comment         => 'Redirect to https',
-        rewrite_cond    => '%{HTTPS} !=on',
-        rewrite_rule    => '^/?(.*) https://%{SERVER_NAME}/$1',
-        ],
-    }
-    apache::vhost {'nedi.example.com':
-      port             => '443',
-      ssl              => true,
-      docroot          => '/usr/local/nedi/html',
-      serveradmin      => 'webmaster@example.com',
-      ssl_protocol     => '-ALL +SSLv3 +TLSv1',
-      ssl_cipher       => 'ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP'^,
-    }
+  # nedi.conf Variables
+  cron { 'backup':
+    command => "/usr/local/nedi/nedi.pl -vproB5 > /tmp/nedi-00.bup 2>&1",
+    user    => nedi,
+    hour    => 0,
+    minute  => 0
+  }
+  cron {'discovery':
+    command => "/usr/local/nedi/nedi.pl -vp > /tmp/nedi-`date +\%H`.run 2>&1",
+    user    => 'nedi',
+    hour    => ['1-23'],
+    minute  => '0',
+  }
+  cron {'db-cleanup':
+    command  => "/usr/local/nedi/contrib/nedio_db_maintenance.sh /var/nedi/nedi.conf /tmp/nedi-dbcleanup",
+    user     => 'nedi',
+    hour     => '1',
+    minute   => '0',
+    monthday => '1',
   }
 }
