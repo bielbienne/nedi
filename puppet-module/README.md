@@ -1,4 +1,4 @@
-nedi
+xnedi
 ====
 
 Overview
@@ -12,7 +12,7 @@ connected devices, monitor traffic or broadcasts, send mails or SMS when certain
 
 Setup
 -----
-To install this recipie, copy the whole puppet-module folder into your modules folder in you Puppet environment. It will setup the folder structure for nedi, create a user for NeDi, create a virtual host and manages the crontab for the user nedi.
+To install this module, copy the whole puppet-module folder into your modules folder in you Puppet environment. It will setup the folder structure for nedi, create a user for NeDi, create a virtual host and manages the crontab for the user nedi.
 It is highly recommended that you read the documentation of NeDi **BEFORE** you use this recipie. Since it is still in an early development statium, there can occur several erros. If you expirience something unexpected, please let us know, so we can fix it.
 You need initialize NeDi by yourself, since there are a few parameters, which aren't implemented into this recipie yet. The application part, of NeDi will be found in */usr/local/nedi*. The home directory and  all varying files of NeDi are located in */var/nedi*. The puppet recipie creates all the necessary symlinks.
 
@@ -24,6 +24,8 @@ Roadmap
 Contributors
 ------------
 Module is in development by City of Biel.
+
+Written by Oliviero Chiodo.
 
 ###License
 This puppet module is part of free software; you can redistribute it and/or modify
