@@ -1,6 +1,4 @@
 class nedi::config{
-  # crontab
-  # nedi.conf Variables
   cron { 'backup':
     command => "/usr/local/nedi/nedi.pl -vproB5 > /tmp/nedi-00.bup 2>&1",
     user    => nedi,
