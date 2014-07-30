@@ -13,8 +13,18 @@ connected devices, monitor traffic or broadcasts, send mails or SMS when certain
 Setup
 -----
 To install this module, copy the whole puppet-module folder into your modules folder in you Puppet environment. It will setup the folder structure for nedi, create a user for NeDi, create a virtual host and manages the crontab for the user nedi.
-It is highly recommended that you read the documentation of NeDi **BEFORE** you use this recipie. Since it is still in an early development statium, there can occur several erros. If you expirience something unexpected, please let us know, so we can fix it.
+It is highly recommended that you read the documentation of NeDi **BEFORE** you use this recipie. Since it is still in an early development statium, there can occur several errors. If you expirience something unexpected, please let us know, so we can fix it.
 You need initialize NeDi by yourself, since there are a few parameters, which aren't implemented into this recipie yet. The application part, of NeDi will be found in */usr/local/nedi*. The home directory and  all varying files of NeDi are located in */var/nedi*. The puppet recipie creates all the necessary symlinks.
+
+Usage
+-----
+The module has three parts, packages, install and config. The packages module installs all needed packages, the install module installs nedi and its folder structure and the config part, manages templates and crontab. The nedi.conf and the virtual host configuration file(for httpd) are templates. You can edit their variables in the init.pp on top of the file. Arrays, which are inside squared brackets, are used as following:
+
+~~~
+$variable = ['parameter1','parameter2',parameter3'],
+~~~
+
+The templates are just examples, you can use anything you want as template, or just adjust them. Please let us know if you would like to have a feature included, which you would think will be useful for others.
 
 Roadmap
 -------
@@ -25,7 +35,7 @@ Contributors
 ------------
 Module is in development by City of Biel.
 
-Written by Oliviero Chiodo.
+Written by [Oliviero Chiodo](mailto:oliviero.chiodo@biel-bienne.ch).
 
 ###License
 This puppet module is part of free software; you can redistribute it and/or modify
